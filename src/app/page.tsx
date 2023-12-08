@@ -11,7 +11,7 @@ export default async function ChatGPTWithX() {
                 heading="Le Psychanalyste Artificiel"
                 subheading="Propulsé par ChatGPT"
             />
-            <div className="flex flex-row justify-between">
+            <div className="flex flex-row justify-between gap-2">
             <Button asChild>
                 <Link href="/books">Explorer</Link>
             </Button>
@@ -23,6 +23,9 @@ export default async function ChatGPTWithX() {
                     width={70} 
                 />
             </Link>
+            <Button asChild>
+                <Link href="/conversation">Coversation</Link>
+            </Button>
             </div>
         </main>
     )
