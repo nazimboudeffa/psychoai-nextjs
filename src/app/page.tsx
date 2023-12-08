@@ -8,7 +8,7 @@ export default async function ChatGPTWithX() {
     return (
         <main className="min-h-screen flex flex-col items-center justify-center w-full h-full">
             <Header
-                heading="Le Psychanalyste Artificiel"
+                heading="L'IA au service de la santé mentale"
                 subheading="Propulsé par ChatGPT"
             />
             <div className="flex flex-row justify-between gap-2">

@@ -101,7 +101,7 @@ export function Chat() {
             <div className="flex flex-row justify-between">
                 <div>
                     <p className="text-sm text-muted-foreground mt-3 ml-3">
-                        Fonctionne en français uniquement pour le moment.
+                        Fonctionne en anglais ou en français.
                     </p>
                 </div>
                 <div className="flex flex-row">
