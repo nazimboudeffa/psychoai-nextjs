@@ -1,6 +1,7 @@
 import { Header } from "@/components/header"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default async function ChatGPTWithX() {
 
@@ -10,9 +11,19 @@ export default async function ChatGPTWithX() {
                 heading="Psychanalyste Artificiel"
                 subheading="Propulsé par ChatGPT"
             />
+            <div className="flex flex-row justify-between">
             <Button asChild>
                 <Link href="/books">Explorer</Link>
             </Button>
+            <Link href="https://fr.tipeee.com/nazimboudeffa" passHref={true}>                   
+                <Image
+                    src="tipeee_tip_btn.svg"
+                    alt="tip"
+                    height={80}
+                    width={70} 
+                />
+            </Link>
+            </div>
         </main>
     )
 }

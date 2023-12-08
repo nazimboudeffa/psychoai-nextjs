@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server"
-
 import { promptChatGPT } from "@/lib/chat"
 
 export type ChatPrompt = {

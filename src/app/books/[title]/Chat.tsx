@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { AlertCircle, Bot, FileQuestion, Loader2 } from "lucide-react"
 
-import { Alert, AlertDescription } from "@/components/ui/radix-alert"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 import {
     AlertDialog,
     AlertDialogAction,
@@ -14,12 +14,9 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
     AlertDialogTrigger,
-} from "@/components/ui/radix-alert-dialog"
-import { Button } from "@/components/ui/radix-button"
-import { Input } from "@/components/ui/radix-input"
-
-import Image from 'next/image'
-import Link from 'next/link'
+  } from "@/components/ui/alert-dialog"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { useParams } from 'next/navigation'
 
 interface ChatInteraction {
@@ -29,10 +26,10 @@ interface ChatInteraction {
 
 async function askQuestion(apiKey: string, question: string, selectedDocument: string) {
     try {
-        const response = await fetch(`./api`, {
+        const response = await fetch('./api', {
             method: "POST",
             body: JSON.stringify({
-                apiKey,
+                apiKey: apiKey,
                 prompt: question,
                 document: selectedDocument,
             }),
@@ -114,60 +111,50 @@ export function Chat() {
                 </div>
                 <div className="flex flex-row">
                     <AlertDialog>
-                        <AlertDialogTrigger asChild>
-                            <Button
-                                variant="secondary"
-                                className={`min-w-[80px] mr-5 text-xs sm:text-sm ${
-                                    !apiKey || apiKey.length == 0
-                                        ? "animate-pulse"
-                                        : ""
-                                }`}
-                            >
-                                {apiKey && apiKey.length > 0 ? (
-                                    "Your OpenAI Key"
-                                ) : (
-                                    <>
-                                        <AlertCircle className="mr-2 h-4 w-4 text-destructive" />{" "}
-                                        API Key
-                                    </>
-                                )}
-                            </Button>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent>
-                            <AlertDialogHeader>
-                                <AlertDialogTitle>
-                                    OpenAI API key
-                                </AlertDialogTitle>
-                                <AlertDialogDescription>
-                                    <div>
-                                        This tool requires your OpenAI API key.
-                                        It will not be stored, only temporarily on this page.
-                                    </div>
-                                    <div className="mt-2">
-                                        <Input
-                                            type="text"
-                                            id="apiKey"
-                                            value={apiKey}
-                                            onChange={(e) => setApiKey(e.target.value)}
-                                            placeholder="Enter your OpenAI API key..."
-                                        />
-                                    </div>
-                                </AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter>
-                                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                <AlertDialogAction>Save</AlertDialogAction>
-                            </AlertDialogFooter>
-                        </AlertDialogContent>
+                    <AlertDialogTrigger asChild>
+                        <Button
+                            variant="destructive"
+                            className={`min-w-[80px] mr-5 text-xs sm:text-sm ${
+                                !apiKey || apiKey.length == 0
+                                    ? "animate-pulse"
+                                    : ""
+                            }`}
+                        >
+                            {apiKey && apiKey.length > 0 ? (
+                                "Your OpenAI Key"
+                            ) : (
+                                <>
+                                    <AlertCircle className="mr-2 h-4 w-4" />{" "}
+                                    API Key
+                                </>
+                            )}
+                        </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                        <AlertDialogHeader>
+                        <AlertDialogTitle>OpenAI API key</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            <p>
+                                This tool requires your OpenAI API key.
+                                It will not be stored, only temporarily on this page.
+                            </p>
+                            <p className="mt-2">
+                                <Input
+                                    type="text"
+                                    id="apiKey"
+                                    value={apiKey}
+                                    onChange={(e) => setApiKey(e.target.value)}
+                                    placeholder="Enter your OpenAI API key..."
+                                />
+                            </p>
+                        </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction>Save</AlertDialogAction>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
                     </AlertDialog>
-                    <Link href="https://fr.tipeee.com/nazimboudeffa" passHref={true}>                   
-                    <Image
-                        src="tipeee_tip_btn.svg"
-                        alt="tip"
-                        height={80}
-                        width={70} 
-                    />
-                    </Link>
                 </div>
             </div>
             <div className="mt-4 rounded-lg">
@@ -183,7 +170,7 @@ export function Chat() {
                                 <FileQuestion className="h-4 w-4" />
                             )}
                             <AlertDescription>
-                                <div className="ml-5">{i.message}</div>
+                                {i.message}
                             </AlertDescription>
                         </Alert>
                     ))}
