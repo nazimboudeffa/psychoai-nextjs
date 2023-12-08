@@ -26,16 +26,18 @@ interface ChatInteraction {
 
 async function askQuestion(apiKey: string, question: string, selectedDocument: string) {
     try {
+        const ask = JSON.stringify({
+            apiKey: apiKey,
+            prompt: question,
+            document: selectedDocument,
+        })
         const response = await fetch('./api', {
             method: "POST",
-            body: JSON.stringify({
-                apiKey: apiKey,
-                prompt: question,
-                document: selectedDocument,
-            }),
+            body: ask,
         })
 
         if (response.ok) {
+            console.log("response", response)
             return (await response.json()) as {
                 success: boolean
                 result?: { text: string }

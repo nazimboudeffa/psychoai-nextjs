@@ -26,9 +26,11 @@ export async function POST(request: NextRequest) {
             chatPrompt.document
         )
 
+        console.log(result)
+
         return NextResponse.json({
             success: true,
-            result,
+            result: result,
         })
     } catch (error) {
         console.log(error)
